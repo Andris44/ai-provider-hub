@@ -120,7 +120,44 @@ $("test").onclick = async () => {
   }
 };
 
+$("testGithub").onclick = async () => {
+  const result = $("githubResult");
+  const token = $("githubToken").value.trim();
+  const repo =
+    parseRepoUrl($("repoUrl").value) ||
+    (projects[projects.length - 1]
+      ? {
+          owner: projects[projects.length - 1].owner,
+          repo: projects[projects.length - 1].repo,
+        }
+      : null);
+  if (!token) {
+    result.className = "status warn";
+    result.textContent = "Enter a GitHub token first.";
+    return;
+  }
+  if (!repo) {
+    result.className = "status warn";
+    result.textContent = "Add a project (or paste a repo URL) to test against.";
+    return;
+  }
+  $("testGithub").disabled = true;
+  result.className = "status muted";
+  result.textContent = `Checking ${repo.owner}/${repo.repo}…`;
+  try {
+    const check = await checkTokenAccess(token, repo.owner, repo.repo);
+    result.className = `status ${check.ok ? "ok" : "err"}`;
+    result.textContent = check.message;
+  } catch (error) {
+    result.className = "status err";
+    result.textContent = `⚠️ ${error.message}`;
+  } finally {
+    $("testGithub").disabled = false;
+  }
+};
+
 $("addProject").onclick = async () => {
+
   const repo = parseRepoUrl($("repoUrl").value);
   if (!repo) {
     alert("Enter a GitHub repo URL or owner/repo.");

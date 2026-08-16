@@ -36,7 +36,25 @@ naming that provider and suggesting you wait or switch providers in settings.
 The extension **never** silently falls back to another provider — the active
 provider and model are always shown in the side panel header.
 
+## GitHub token permissions
+
+Pushing needs a token that can write code. With a **fine-grained PAT**:
+
+- Repository access → include the exact repository
+- Permissions → Repository → **Contents: Read and write**
+- Permissions → Repository → **Pull requests: Read and write** (PR push mode)
+- Permissions → Repository → **Metadata: Read-only** (auto-required)
+- Org-owned repos: an org owner must approve the token
+  (Org → Settings → Personal access tokens → Pending requests)
+
+Classic tokens need the full `repo` scope.
+
+`GitHub 403: Resource not accessible by personal access token` on
+`git/blobs` means exactly this — the token can read the repo but not write.
+Use **Test GitHub access** in settings to verify write access before pushing.
+
 ## Adding another provider
+
 
 Almost every backend is OpenAI-compatible, so a new one is a single entry in
 `lib/providers.js`:
