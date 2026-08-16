@@ -46,6 +46,13 @@
         <div class="field">
           <label for="githubToken">GitHub token (fine-grained PAT, Contents + Pull requests: read &amp; write)</label>
           <input id="githubToken" type="password" placeholder="github_pat_..." />
+          <p class="muted" style="font-size: 11px">
+            A 403 "Resource not accessible by personal access token" means the
+            token is missing <strong>Contents: Read and write</strong> (and
+            <strong>Pull requests: Read and write</strong> for PR mode) on that
+            repository — org-owned repos also need owner approval of the token.
+            Classic tokens need the full <code>repo</code> scope.
+          </p>
         </div>
         <div class="field">
           <label for="pushMode">Default push mode</label>
@@ -54,7 +61,12 @@
             <option value="direct">Direct commit to the selected branch</option>
           </select>
         </div>
+        <div class="row">
+          <button id="testGithub" class="tiny">Test GitHub access</button>
+          <span id="githubResult" class="status muted"></span>
+        </div>
       </div>
+
 
       <div class="card">
         <h2>Projects</h2>

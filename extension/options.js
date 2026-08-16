@@ -7,6 +7,8 @@ import {
   getProvider,
 } from "./lib/storage.js";
 import { testProvider, ProviderError } from "./lib/providers.js";
+import { checkTokenAccess } from "./lib/github.js";
+
 
 const $ = (id) => document.getElementById(id);
 let projects = [];
