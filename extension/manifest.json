@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "AI ⇄ Lovable ⇄ GitHub",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Chat with your choice of AI provider about your Lovable project's GitHub repo, review diffs, and push commits or pull requests.",
   "permissions": ["storage", "sidePanel", "tabs"],
   "host_permissions": [
