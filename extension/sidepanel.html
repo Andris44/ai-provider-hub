@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>AI ⇄ Lovable ⇄ GitHub</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="top">
+        <div class="row">
+          <select id="projectSelect" class="grow"></select>
+          <button id="openOptions" class="tiny ghost" title="Settings">⚙</button>
+        </div>
+        <div class="row">
+          <select id="branchSelect" class="grow"></select>
+          <button id="reload" class="tiny">Reload</button>
+        </div>
+        <div id="status" class="status muted">Not connected.</div>
+        <div id="providerBadge" class="status muted"></div>
+        <nav class="tabs">
+          <button id="tabChat" aria-selected="true">Chat</button>
+          <button id="tabFiles" aria-selected="false">Files</button>
+          <button id="tabChanges" aria-selected="false">Changes <span id="pendingCount"></span></button>
+        </nav>
+      </header>
+
+      <main>
+        <section id="viewChat"></section>
+        <section id="viewFiles" class="tree hidden"></section>
+        <section id="viewChanges" class="hidden"></section>
+      </main>
+
+      <footer class="bottom">
+        <div id="chatBar">
+          <textarea id="prompt" rows="3" placeholder="Ask about the code, or describe a change…"></textarea>
+          <div class="row" style="margin-top:8px">
+            <button id="send" class="primary grow">Ask AI</button>
+            <button id="stop" class="tiny hidden">Stop</button>
+          </div>
+        </div>
+        <div id="pushBar" class="hidden">
+          <div class="field">
+            <label for="commitMessage">Commit message</label>
+            <input id="commitMessage" placeholder="Update project files" />
+          </div>
+          <div class="field">
+            <label for="pushMode">Push mode</label>
+            <select id="pushMode">
+              <option value="pr">New branch + Pull Request (safer)</option>
+              <option value="direct">Direct commit to branch</option>
+            </select>
+          </div>
+          <div id="pushWarning" class="status warn"></div>
+          <button id="push" class="primary">Push to GitHub</button>
+          <div id="pushResult" class="status"></div>
+        </div>
+      </footer>
+    </div>
+    <script type="module" src="sidepanel.js"></script>
+  </body>
+</html>
