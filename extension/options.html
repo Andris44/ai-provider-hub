@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>AI ⇄ Lovable ⇄ GitHub — Settings</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="options">
+      <h1>AI ⇄ Lovable ⇄ GitHub</h1>
+      <p class="muted">
+        Keys are stored with <code>chrome.storage.local</code> on this machine only —
+        never in a committed file. Requests go only to the AI provider you pick and
+        to api.github.com.
+      </p>
+
+      <div class="card">
+        <h2>AI provider</h2>
+        <div class="field">
+          <label for="provider">Provider</label>
+          <select id="provider"></select>
+        </div>
+        <p id="providerNotes" class="muted"></p>
+        <div class="field">
+          <label for="apiKey">API key for this provider</label>
+          <input id="apiKey" type="password" autocomplete="off" />
+          <p class="muted" style="margin:6px 0 0">
+            Bring your own key —
+            <a id="signupLink" href="#" target="_blank" rel="noreferrer">get one here</a>.
+            Free-tier rate limits vary by provider; keys are saved per provider so you
+            can switch without re-entering them.
+          </p>
+        </div>
+        <div class="field">
+          <label for="model">Model</label>
+          <input id="model" autocomplete="off" />
+        </div>
+        <div class="row">
+          <button id="test">Test connection</button>
+          <span id="testResult" class="status muted"></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>GitHub</h2>
+        <div class="field">
+          <label for="githubToken">GitHub token (fine-grained PAT, Contents + Pull requests: read &amp; write)</label>
+          <input id="githubToken" type="password" placeholder="github_pat_..." />
+        </div>
+        <div class="field">
+          <label for="pushMode">Default push mode</label>
+          <select id="pushMode">
+            <option value="pr">New branch + Pull Request (recommended)</option>
+            <option value="direct">Direct commit to the selected branch</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Projects</h2>
+        <p class="muted">
+          Pair a Lovable project URL with the GitHub repo it syncs with.
+        </p>
+        <div class="field">
+          <label for="lovableUrl">Lovable project URL (optional)</label>
+          <input id="lovableUrl" placeholder="https://lovable.dev/projects/…" />
+        </div>
+        <div class="field">
+          <label for="repoUrl">GitHub repo URL or owner/repo</label>
+          <input id="repoUrl" placeholder="https://github.com/owner/repo" />
+        </div>
+        <div class="field">
+          <label for="branch">Branch</label>
+          <input id="branch" placeholder="main" />
+        </div>
+        <button id="addProject" class="primary">Add project</button>
+        <ul class="projects" id="projectList"></ul>
+      </div>
+
+      <div class="row">
+        <button id="save" class="primary">Save settings</button>
+        <span id="saved" class="status ok hidden">Saved ✓</span>
+      </div>
+    </div>
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "AI ⇄ Lovable ⇄ GitHub",
+  "version": "0.4.0",
+  "description": "Chat with your choice of AI provider about your Lovable project's GitHub repo, review diffs, and push commits or pull requests.",
+  "permissions": ["storage", "sidePanel", "tabs"],
+  "host_permissions": [
+    "https://api.anthropic.com/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://api.groq.com/*",
+    "https://api.deepseek.com/*",
+    "https://api.mistral.ai/*",
+    "https://api.cerebras.ai/*",
+    "https://openrouter.ai/*",
+    "https://api.github.com/*",
+    "https://lovable.dev/*"
+  ],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_title": "AI ⇄ Lovable ⇄ GitHub" },
+  "side_panel": { "default_path": "sidepanel.html" },
+  "options_page": "options.html",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
